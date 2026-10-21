@@ -1,0 +1,145 @@
+ARCHITECTURE — LIÊN HOA PHẬT HỌC
+
+1. Project Overview
+
+Liên Hoa Phật Học is a responsive Buddhist learning website combining a Buddhist digital library with modern study tools.
+
+The website should support phones, tablets, and desktop computers, with Samsung Galaxy Tab S11 as an important development and testing device.
+
+2. Main Principles
+
+- Prioritize free or low-cost services.
+- Public reading and browsing do not require an account.
+- Accounts are optional and support synchronization between devices.
+- Design for accessibility, readability, and touch interaction.
+- Support offline use where technically possible and legally permitted.
+- Verify sources, licenses, and publication rights before publishing content.
+- Keep the architecture maintainable and secure.
+
+3. Main Website Sections
+
+1. Home and global search
+2. Featured Buddhist learning
+3. Scripture and book library
+4. Buddhist music — Lam Nguyệt
+5. Dharma talks and videos
+6. Buddhist study tools
+7. Offline content recommendations
+
+4. User Roles
+
+Public Visitor
+
+- Browse and read published public content.
+- Search the library.
+- Listen to or watch available media.
+- Use supported study tools.
+
+Registered User
+
+- Access public content.
+- Save bookmarks and favorites.
+- Maintain personal notes and history.
+- Synchronize supported personal data across devices.
+
+Administrator
+
+- Manage content categories.
+- Create, edit, preview, publish, archive, and restore content.
+- Manage media files and metadata.
+- Review publication rights and sources.
+- Manage users and website settings.
+- Review administrative activity logs.
+
+Administrative permissions must be enforced securely by the backend, not only by hiding interface elements.
+
+5. Content Categories
+
+- Buddhist studies
+- Scriptures and books
+- Buddhist music
+- Dharma talks
+- Videos
+- Study resources
+
+Content records should support titles, descriptions, categories, authors, translators, sources, rights information, publication status, dates, and associated media files where applicable.
+
+6. Proposed Technical Architecture
+
+The following choices are provisional and must be checked before implementation:
+
+- Source control: GitHub repository "lien-hoa-phat-hoc"
+- Frontend: HTML, CSS, and JavaScript, with a responsive design
+- Website hosting: evaluate Cloudflare Pages and other suitable free-tier options
+- Database and optional authentication: evaluate Supabase or an equivalent service
+- Media storage: evaluate object storage such as Cloudflare R2
+- Offline capability: Progressive Web App (PWA), service worker, and appropriate local caching
+- Android app packaging: evaluate only after the website is stable
+
+Do not create paid resources or connect external services without reviewing their current limits, pricing, privacy, and security.
+
+7. Data Groups
+
+- Public content and category metadata
+- Media file metadata and storage references
+- User accounts and synchronization settings
+- Bookmarks, notes, favorites, and reading history
+- Study tool settings and supported records
+- Offline cache and download status
+- Administrator activity logs
+- Backup and recovery records
+
+Personal user data must not be exposed publicly.
+
+8. Offline Strategy
+
+- Cache the website shell and selected public content where appropriate.
+- Support offline access to eligible saved reading materials.
+- Keep local study tools usable offline where feasible.
+- Download audio, video, or documents only when permitted and supported.
+- Synchronize local changes when connectivity returns, where supported.
+- Explain that clearing browser data or changing devices may remove unsynchronized local data.
+
+9. Media and Publication Rights
+
+- Record the source and rights information for published materials.
+- Distinguish original writing, scripture editions, translations, commentaries, and third-party media.
+- Do not assume that a file is free to republish merely because it can be accessed online.
+- Verify the applicable terms and permissions for each Suno-generated track before public or commercial distribution.
+- Keep large audio and video files out of the source-code repository unless there is a specific, justified reason.
+
+10. Security and Administration
+
+- Keep private keys and service secrets out of frontend code and the public repository.
+- Apply server-side authorization to administrative actions.
+- Validate uploaded files and form inputs.
+- Restrict access to private notes and account data.
+- Use recoverable archiving before permanent content deletion.
+- Maintain separate backups for database records and stored media files.
+
+11. Implementation Sequence
+
+1. Confirm the design and architecture.
+2. Prepare the responsive website structure.
+3. Build the visual design system and shared components.
+4. Build the homepage and navigation.
+5. Build the library and content-reading pages.
+6. Build music, video, and study-tool interfaces.
+7. Implement the administrator interface.
+8. Integrate database, authentication, and media storage.
+9. Implement and test offline features.
+10. Test accessibility, security, responsiveness, and recovery.
+11. Deploy the website.
+12. Evaluate Android packaging after the website is stable.
+
+12. Current Project Status
+
+- GitHub repository created.
+- "README.md" exists.
+- "PROJECT-PLAN.md" exists.
+- "ARCHITECTURE.md" created.
+- "index.html" exists.
+- Project folders include "assets", "scripts", "pages", "styles", and "pwa".
+- No production code has been implemented yet.
+- External services have not been finalized or connected.
+- The project is still in the planning and preparation stage.
