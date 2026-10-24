@@ -1,0 +1,104 @@
+
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+      // Năm hiện tại ở chân trang
+        const yearElement = document.getElementById("year");
+
+          if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+          }
+
+            // Mở và đóng menu trên màn hình nhỏ
+              const menuButton = document.getElementById("menu-button");
+                const mainNav = document.getElementById("main-nav");
+
+                  if (menuButton && mainNav) {
+                        menuButton.addEventListener("click", () => {
+                                  const isOpen = mainNav.classList.toggle("open");
+
+                                        menuButton.setAttribute("aria-expanded", String(isOpen));
+                                              menuButton.setAttribute(
+                                                        "aria-label",
+                                                                isOpen ? "Đóng danh mục" : "Mở danh mục"
+                                              );
+                                                    menuButton.textContent = isOpen ? "✕" : "☰";
+                        });
+
+                            mainNav.querySelectorAll("a").forEach((link) => {
+                                      link.addEventListener("click", () => {
+                                                mainNav.classList.remove("open");
+                                                        menuButton.setAttribute("aria-expanded", "false");
+                                                                menuButton.setAttribute("aria-label", "Mở danh mục");
+                                                                        menuButton.textContent = "☰";
+                                      });
+                            });
+                  }
+
+                    // Tìm kiếm các chuyên mục đang hiển thị trên trang chủ
+                      const searchInput = document.getElementById("site-search");
+                        const searchButton = document.getElementById("search-button");
+                          const searchMessage = document.getElementById("search-message");
+                            const categoryCards = Array.from(
+                                    document.querySelectorAll(".category-card")
+                            );
+
+                              function performSearch() {
+                                    if (!searchInput || !searchMessage) return;
+
+                                        const keyword = searchInput.value.trim().toLocaleLowerCase("vi");
+
+                                            categoryCards.forEach((card) => {
+                                                      card.hidden = false;
+                                            });
+
+                                                if (!keyword) {
+                                                          searchMessage.textContent =
+                                                                  "Nhập từ khóa để tìm chuyên mục bạn cần.";
+                                                                        return;
+                                                }
+
+                                                    let count = 0;
+
+                                                        categoryCards.forEach((card) => {
+                                                                  const text = card.textContent.toLocaleLowerCase("vi");
+                                                                        const matched = text.includes(keyword);
+
+                                                                              card.hidden = !matched;
+
+                                                                                    if (matched) count++;
+                                                        });
+
+                                                            searchMessage.textContent = count > 0
+                                                                  ? `Tìm thấy ${count} chuyên mục phù hợp.`
+                                                                        : "Chưa tìm thấy chuyên mục phù hợp. Hãy thử từ khóa khác.";
+                              }
+
+                                if (searchButton) {
+                                        searchButton.addEventListener("click", performSearch);
+                                }
+
+                                  if (searchInput) {
+                                        searchInput.addEventListener("keydown", (event) => {
+                                                  if (event.key === "Enter") {
+                                                            performSearch();
+                                                  }
+                                        });
+
+                                            searchInput.addEventListener("input", () => {
+                                                      if (!searchInput.value.trim() && searchMessage) {
+                                                                categoryCards.forEach((card) => {
+                                                                              card.hidden = false;
+                                                                });
+
+                                                                        searchMessage.textContent = "";
+                                                      }
+                                            });
+                                  }
+});
+
+                                      }
+                                              )
+                        })
+          }
+})
